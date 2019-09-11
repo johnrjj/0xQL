@@ -6,7 +6,9 @@ tl;dr: Easily add GraphQL support to any 0x Relayer that follows the [0x Standar
 
 ## Overview
 
-`0xQL` is a package for Node that enables developers to quickly build GraphQL integrations with existing 0x Relayers. The GraphQL server provides the same functionality as the 0x Relayer's REST and WS APIs, but gains the advantages of GraphQL and the flexibility of GraphQL's query language via [Queries](https://graphql.org/learn/queries/), [Mutations](https://graphql.org/learn/queries/#mutations), and [Subscriptions](https://graphql.org/blog/subscriptions-in-graphql-and-relay/).
+`0xQL` is a node package that enables developers to quickly build GraphQL integrations with existing 0x Relayers. `0xQL` offers an opionated set of modules that can be used to build a functional GraphQL server.
+
+The GraphQL server is intented to provide the same functionality as the 0x Relayer's REST and WS APIs, but also gain the advantages of GraphQL and the flexibility of GraphQL's query language via [Queries](https://graphql.org/learn/queries/), [Mutations](https://graphql.org/learn/queries/#mutations), and [Subscriptions](https://graphql.org/blog/subscriptions-in-graphql-and-relay/).
 
 ## Demo
 
