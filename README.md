@@ -1,16 +1,16 @@
 # `0xQL` (ZeroEx GraphQL)
 
-Easily add GraphQL support to any 0x Relayer that follows the [0x Standard Relayer API](https://github.com/0xProject/standard-relayer-api) spec.
-
-## Demo
-
-Check out the GraphiQL playground [here](https://zeroexql.herokuapp.com/graphql). Try creating some queries, mutations, or subscriptions.
-
-Check out the [getting started guide](#getting-started) for a sample query and [sample subscription](#subscriptions-demo) to try out on the demo playground.
+tl;dr: Easily add GraphQL support to any 0x Relayer that follows the [0x Standard Relayer API](https://github.com/0xProject/standard-relayer-api) spec.
 
 ## Overview
 
 `0xQL` enables developers to quickly build a GraphQL server that can automatically integrate with an existing 0x Relayer. The GraphQL server mirrors functionality of the 0x Relayer's REST and WS API, but instead can be accessed via GraphQL's [Queries](https://graphql.org/learn/queries/), [Mutations](https://graphql.org/learn/queries/#mutations), and [Subscriptions](https://graphql.org/blog/subscriptions-in-graphql-and-relay/).
+
+## Demo
+
+Check out the GraphiQL playground [here](https://zeroexql.herokuapp.com/graphql), which is currently pointed at RadarRelay. Try creating some queries, mutations, or subscriptions.
+
+Check out the [quick start guide](#quick-start-guide) for a sample query and [sample subscription](#subscriptions-demo) to try out on the demo playground.
 
 ## Getting Started
 
