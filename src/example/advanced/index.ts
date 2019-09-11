@@ -4,12 +4,8 @@ import WS from 'ws'
 import cors from 'cors'
 import uuid from 'uuid/v4'
 import ReconnectingWebSocket from 'reconnecting-websocket'
-import { ApolloServer } from 'apollo-server-express'
-import { SubscriptionServer } from 'subscriptions-transport-ws'
 import { HttpClient } from '@0x/connect'
-import { createServer } from 'http'
-import { execute, subscribe } from 'graphql'
-import { makeExecutableSchema } from 'graphql-tools'
+import { ApolloServer } from 'apollo-server-express'
 import { PubSub } from 'graphql-subscriptions'
 import {
   typeDefs,
@@ -23,7 +19,6 @@ import {
 // Here's an example w/ an existing express server with maximum configurability/flexiblity.
 
 const APP_PORT = process.env.PORT ? parseInt(process.env.PORT) : 4000
-const WEBSOCKET_PORT = process.env.WEBSOCKET_PORT ? parseInt(process.env.WEBSOCKET_PORT) : 4001
 const ORDERS_TOPIC = process.env.ORDERS_TOPIC || DEFAULT_ORDERS_TOPIC
 const SUBSCRIBE_MESSAGE_TYPE = 'subscribe'
 const REST_API_ENDPOINT = process.env.REST_API_ENDPOINT || 'https://api.radarrelay.com/0x/v2'
@@ -81,30 +76,6 @@ const resolvers = {
   JSON: jsonResolver,
 }
 
-// Setup websocket server
-const websocketServer = createServer((_request, response) => {
-  console.log('???')
-  response.writeHead(404)
-  response.end()
-})
-
-SubscriptionServer.create(
-  {
-    execute,
-    subscribe,
-    schema: makeExecutableSchema({ typeDefs, resolvers }),
-  },
-  {
-    server: websocketServer,
-    path: '/graphql',
-  }
-)
-
-// Start websocket server
-websocketServer.listen(WEBSOCKET_PORT, () =>
-  console.log(`Websocket Server is now running on ws://localhost:${WEBSOCKET_PORT}`)
-)
-
 // Setup graphql server
 // Start with a basic express server...
 const app = express()
@@ -127,5 +98,4 @@ server.installSubscriptionHandlers(httpServer)
 
 httpServer.listen(APP_PORT, () => {
   console.log(`🚀 Server ready at http://localhost:${APP_PORT}${server.graphqlPath}`)
-  console.log(`🚀 Subscriptions ready at ws://localhost:${WEBSOCKET_PORT}${server.subscriptionsPath}`)
 })
