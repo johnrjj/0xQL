@@ -1,0 +1,60 @@
+{
+  "name": "0xql",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "license": "MIT",
+  "author": "john johnson (johnrjj[at]gmail.com)",
+  "scripts": {
+    "build": "tsc",
+    "start": "yarn start:example:advanced",
+    "start:example:advanced": "node ./dist/example/advanced/index.js",
+    "start:example:basic": "node ./dist/example/basic/index.ts",
+    "start:example:basic-with-subscriptions": "node ./dist/example/basic-with-subscriptions/index.ts",
+    "dev:example:advanced": "ts-node src/example/advanced/index.ts",
+    "dev:example:basic": "ts-node src/example/basic/index.ts",
+    "dev:example:basic-with-subscriptions": "ts-node src/example/basic-with-subscriptions/index.ts",
+    "test": "ts-node schemas.ts",
+    "prettier": "prettier --write '**/*.{js,ts,tsx,jsx,md}' --ignore-path .gitignore",
+    "graphql-codegen": "graphql-codegen --config codegen.yml",
+    "prepublishOnly": "yarn build"
+  },
+  "files": [
+    "/dist"
+  ],
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.7.0",
+    "@graphql-codegen/introspection": "1.7.0",
+    "@graphql-codegen/typescript": "1.7.0",
+    "@graphql-codegen/typescript-resolvers": "1.7.0",
+    "@types/graphql": "^14.5.0",
+    "@types/lodash": "^4.14.138",
+    "@types/uuid": "^3.4.5",
+    "@types/web3": "^1.0.19",
+    "@types/ws": "^6.0.3",
+    "apollo-server-express": "^2.9.3",
+    "prettier": "^1.18.2",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.6.2"
+  },
+  "dependencies": {
+    "0x.js": "^7.0.1",
+    "@0x/assert": "^2.1.5",
+    "@0x/connect": "^5.0.18",
+    "@0x/json-schemas": "^4.0.1",
+    "@0x/order-utils": "^8.3.1",
+    "@0x/types": "^2.4.2",
+    "apollo-link-ws": "^1.0.18",
+    "apollo-server": "^2.9.3",
+    "graphql": "^14.5.4",
+    "graphql-subscriptions": "^1.1.0",
+    "graphql-tools": "^4.0.5",
+    "graphql-type-json": "^0.3.0",
+    "lodash": "^4.17.15",
+    "reconnecting-websocket": "^4.2.0",
+    "subscriptions-transport-ws": "^0.9.16",
+    "uuid": "^3.3.3",
+    "web3": "^1.2.1",
+    "ws": "^7.1.2"
+  }
+}
