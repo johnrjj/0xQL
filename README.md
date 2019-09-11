@@ -19,7 +19,15 @@ Check out the [getting started guide](#getting-started) for a sample query and [
 - `>= Node v10`
 - `>= Yarn v1.5`
 
-### Basic Setup
+### Installation
+
+```bash
+yarn add 0xql
+```
+
+## Quick Start Guide
+
+This guide will walk through implementing a 0xQL GraphQL server that works with [RadarRelay](https://radarrelay.com/).
 
 Install the dependencies
 
@@ -244,14 +252,6 @@ render(<App />, document.getElementById('root'))
 ```
 
 That's it!
-
-### Installation
-
-```bash
-yarn add 0xql
-```
-
-### Configuration
 
 ## API
 
