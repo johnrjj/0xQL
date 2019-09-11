@@ -1,3 +1,6 @@
+
+![logo](./logo.png)
+
 # `0xQL` (ZeroEx GraphQL)
 
 tl;dr: Easily add GraphQL support to any 0x Relayer that follows the [0x Standard Relayer API](https://github.com/0xProject/standard-relayer-api) spec.
