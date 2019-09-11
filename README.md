@@ -326,4 +326,4 @@ This package provides various ways to consume the `0xQL` package, depending on y
 
 Why not?
 
-Having more ways and to interact and integrate with 0x relayers is a win for the ecosystem.
+Having more ways and to interact with 0x relayers is a win for the ecosystem.
