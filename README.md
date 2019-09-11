@@ -27,7 +27,7 @@ yarn add 0xql
 
 ## Quick Start Guide
 
-This guide will walk through implementing a 0xQL GraphQL server that works with [RadarRelay](https://radarrelay.com/).
+This guide will walk through setting up a 0xQL GraphQL server that works with [RadarRelay](https://radarrelay.com/).
 
 Install the dependencies
 

@@ -126,6 +126,7 @@ app.get('/healthcheck', (_, res) => res.sendStatus(200))
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  playground: true, // Enable playground in production for demo purposes
   formatError: err => err,
 })
 server.applyMiddleware({ app })
