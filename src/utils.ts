@@ -2,13 +2,7 @@ import { BigNumber, orderHashUtils, SignedOrder } from '0x.js'
 import { assert } from '@0x/assert'
 import { schemas } from '@0x/json-schemas'
 import { orderParsingUtils } from '@0x/order-utils'
-import {
-  PaginatedCollection,
-  APIOrder,
-  AssetPairsItem,
-  OrderConfigResponse,
-  OrderConfigRequest,
-} from '@0x/types'
+import { PaginatedCollection, APIOrder, AssetPairsItem, OrderConfigResponse, OrderConfigRequest } from '@0x/types'
 
 class SignedOrderModel {
   public senderAddress?: string
@@ -61,9 +55,7 @@ class SignedOrderModel {
   }
 }
 
-const deserializeOrder = (
-  signedOrderModel: Required<SignedOrderModel>
-): SignedOrder => {
+const deserializeOrder = (signedOrderModel: Required<SignedOrderModel>): SignedOrder => {
   const signedOrder: SignedOrder = {
     signature: signedOrderModel.signature,
     senderAddress: signedOrderModel.senderAddress,
@@ -78,9 +70,7 @@ const deserializeOrder = (
     salt: new BigNumber(signedOrderModel.salt),
     exchangeAddress: signedOrderModel.exchangeAddress,
     feeRecipientAddress: signedOrderModel.feeRecipientAddress,
-    expirationTimeSeconds: new BigNumber(
-      signedOrderModel.expirationTimeSeconds
-    ),
+    expirationTimeSeconds: new BigNumber(signedOrderModel.expirationTimeSeconds),
   }
   return signedOrder
 }
@@ -100,17 +90,13 @@ const serializeOrder = (signedOrder: SignedOrder) => {
     salt: signedOrder.salt.toString(),
     exchangeAddress: signedOrder.exchangeAddress,
     feeRecipientAddress: signedOrder.feeRecipientAddress,
-    expirationTimeSeconds: signedOrder.expirationTimeSeconds
-      .toNumber()
-      .toString(), // conflicting 0x docs around number vs string, going w/ string
+    expirationTimeSeconds: signedOrder.expirationTimeSeconds.toNumber().toString(), // conflicting 0x docs around number vs string, going w/ string
     hash: orderHashUtils.getOrderHashHex(signedOrder),
   }
   return signedOrderModel
 }
 
-const serializePaginatedAPIOrderCollection = (
-  orders: PaginatedCollection<APIOrder>
-) => {
+const serializePaginatedAPIOrderCollection = (orders: PaginatedCollection<APIOrder>) => {
   const serializedRecords = orders.records.map(r => ({
     metadata: r.metaData,
     order: serializeOrder(r.order),
@@ -139,9 +125,7 @@ const serializeAssetPairItem = (assetPair: AssetPairsItem) => {
   }
 }
 
-const serializePaginatedAssetPairsCollection = (
-  assetPairs: PaginatedCollection<AssetPairsItem>
-) => {
+const serializePaginatedAssetPairsCollection = (assetPairs: PaginatedCollection<AssetPairsItem>) => {
   return {
     ...assetPairs,
     records: assetPairs.records.map(serializeAssetPairItem),
@@ -157,11 +141,7 @@ const serializeOrderConfig = (orderConfigResponse: OrderConfigResponse) => {
 }
 
 const parseOrderConfigRequestJson = (json: any): OrderConfigRequest => {
-  assert.doesConformToSchema(
-    'orderConfigResponse',
-    json,
-    schemas.relayerApiOrderConfigResponseSchema
-  )
+  assert.doesConformToSchema('orderConfigResponse', json, schemas.relayerApiOrderConfigResponseSchema)
   return orderParsingUtils.convertStringsFieldsToBigNumbers(json, [
     'makerAssetAmount',
     'takerAssetAmount',

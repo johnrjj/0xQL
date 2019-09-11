@@ -219,11 +219,7 @@ const typeDefs = gql`
     """
     Retrieves a collection of all fee recipient addresses for a relayer.
     """
-    feeRecipients(
-      page: Int
-      networkId: Int
-      perPage: Int
-    ): FeeRecipientsResponse
+    feeRecipients(page: Int, networkId: Int, perPage: Int): FeeRecipientsResponse
   }
 
   # this schema allows the following mutation:

@@ -23,22 +23,15 @@ import {
 // Here's an example w/ an existing express server with maximum configurability/flexiblity.
 
 const APP_PORT = process.env.PORT ? parseInt(process.env.PORT) : 4000
-const WEBSOCKET_PORT = process.env.WEBSOCKET_PORT
-  ? parseInt(process.env.WEBSOCKET_PORT)
-  : 4001
+const WEBSOCKET_PORT = process.env.WEBSOCKET_PORT ? parseInt(process.env.WEBSOCKET_PORT) : 4001
 const ORDERS_TOPIC = process.env.ORDERS_TOPIC || DEFAULT_ORDERS_TOPIC
 const SUBSCRIBE_MESSAGE_TYPE = 'subscribe'
-const REST_API_ENDPOINT =
-  process.env.REST_API_ENDPOINT || 'https://api.radarrelay.com/0x/v2'
-const WS_API_ENDPOINT =
-  process.env.WS_API_ENDPOINT || 'wss://ws.radarrelay.com/0x/v2'
+const REST_API_ENDPOINT = process.env.REST_API_ENDPOINT || 'https://api.radarrelay.com/0x/v2'
+const WS_API_ENDPOINT = process.env.WS_API_ENDPOINT || 'wss://ws.radarrelay.com/0x/v2'
 
 const websocketOptions = {
   WebSocket: WS,
-  connectionTimeout: parseInt(
-    process.env.WEBSOCKET_CONNECTION_TIMEOUT || '1000',
-    10
-  ),
+  connectionTimeout: parseInt(process.env.WEBSOCKET_CONNECTION_TIMEOUT || '1000', 10),
   maxRetries: parseInt(process.env.WEBSOCKET_RECONNECT_MAX_TRIES || '20', 10),
 }
 
@@ -109,9 +102,7 @@ SubscriptionServer.create(
 
 // Start websocket server
 websocketServer.listen(WEBSOCKET_PORT, () =>
-  console.log(
-    `Websocket Server is now running on ws://localhost:${WEBSOCKET_PORT}`
-  )
+  console.log(`Websocket Server is now running on ws://localhost:${WEBSOCKET_PORT}`)
 )
 
 // Setup graphql server
@@ -135,10 +126,6 @@ const httpServer = http.createServer(app)
 server.installSubscriptionHandlers(httpServer)
 
 httpServer.listen(APP_PORT, () => {
-  console.log(
-    `🚀 Server ready at http://localhost:${APP_PORT}${server.graphqlPath}`
-  )
-  console.log(
-    `🚀 Subscriptions ready at ws://localhost:${WEBSOCKET_PORT}${server.subscriptionsPath}`
-  )
+  console.log(`🚀 Server ready at http://localhost:${APP_PORT}${server.graphqlPath}`)
+  console.log(`🚀 Subscriptions ready at ws://localhost:${WEBSOCKET_PORT}${server.subscriptionsPath}`)
 })

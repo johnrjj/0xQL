@@ -1,15 +1,8 @@
 import { pickBy } from 'lodash'
 import { HttpClient } from '@0x/connect'
 import { PubSub, withFilter } from 'graphql-subscriptions'
-import {
-  UpdateOrdersChannelMessage,
-  OrdersChannelMessageTypes,
-} from '@0x/types'
-import {
-  QueryResolvers,
-  MutationResolvers,
-  SubscriptionResolvers,
-} from './resolvers-types'
+import { UpdateOrdersChannelMessage, OrdersChannelMessageTypes } from '@0x/types'
+import { QueryResolvers, MutationResolvers, SubscriptionResolvers } from './resolvers-types'
 import {
   deserializeOrder,
   serializeOrder,
@@ -32,9 +25,7 @@ const queryResolver = (restClient: HttpClient): QueryResolvers => ({
   },
   orders: async (_root, params) => {
     const orders = await restClient.getOrdersAsync(pickBy(params))
-    const serializedOrdersResponse = serializePaginatedAPIOrderCollection(
-      orders
-    )
+    const serializedOrdersResponse = serializePaginatedAPIOrderCollection(orders)
     return serializedOrdersResponse
   },
   orderbook: async (_root, params) => {
@@ -64,9 +55,7 @@ const queryResolver = (restClient: HttpClient): QueryResolvers => ({
       perPage: params.perPage,
     }
     const assetPairs = await restClient.getAssetPairsAsync(pickBy(options))
-    const serializedAssetPairs = serializePaginatedAssetPairsCollection(
-      assetPairs
-    )
+    const serializedAssetPairs = serializePaginatedAssetPairsCollection(assetPairs)
     return serializedAssetPairs
   },
   feeRecipients: async (_root, params) => {
@@ -80,10 +69,7 @@ const queryResolver = (restClient: HttpClient): QueryResolvers => ({
   orderConfig: async (_root, { networkId, ...orderConfigOptions }) => {
     const options = parseOrderConfigRequestJson(orderConfigOptions)
     const requestConfig = pickBy({ networkId })
-    const orderConfigResponse = await restClient.getOrderConfigAsync(
-      options,
-      requestConfig
-    )
+    const orderConfigResponse = await restClient.getOrderConfigAsync(options, requestConfig)
     const serializedOrderConfig = serializeOrderConfig(orderConfigResponse)
     return serializedOrderConfig
   },
@@ -101,17 +87,9 @@ const mutationResolver = (restClient: HttpClient): MutationResolvers => ({
   },
 })
 
-const subscriptionResolver = (
-  pubsub: PubSub,
-  ordersUpdateTopic: string
-): SubscriptionResolvers => ({
+const subscriptionResolver = (pubsub: PubSub, ordersUpdateTopic: string): SubscriptionResolvers => ({
   subscribeToOrders: {
-    resolve: (
-      payload: UpdateOrdersChannelMessage,
-      variables,
-      _context,
-      _info
-    ) => {
+    resolve: (payload: UpdateOrdersChannelMessage, variables, _context, _info) => {
       return {
         ...payload,
         requestId: variables.requestId,

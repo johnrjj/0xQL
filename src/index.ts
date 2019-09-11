@@ -5,11 +5,7 @@ import jsonResolver from 'graphql-type-json'
 import { HttpClient } from '@0x/connect'
 import { PubSub } from 'graphql-subscriptions'
 import { typeDefs } from './schema'
-import {
-  queryResolver,
-  mutationResolver,
-  subscriptionResolver,
-} from './resolvers'
+import { queryResolver, mutationResolver, subscriptionResolver } from './resolvers'
 
 const resolvers = {
   queryResolver,
@@ -79,9 +75,7 @@ const createReadyToUseResolvers = (
         pubsub.publish(ordersTopic, parsedData)
       }
     })
-    ws.addEventListener('error', e =>
-      console.error('ERROR: Error with the autosubscribed websocket', e)
-    )
+    ws.addEventListener('error', e => console.error('ERROR: Error with the autosubscribed websocket', e))
   }
   return {
     queryResolver: queryResolver(new HttpClient(relayerRestApiUrl)),

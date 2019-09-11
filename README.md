@@ -51,11 +51,7 @@ const { createReadyToUseResolvers, typeDefs } = require('0xql')
 const APP_PORT = 4000
 const REST_API_ENDPOINT = 'https://api.radarrelay.com/0x/v2'
 
-const {
-  queryResolver,
-  mutationResolver,
-  jsonResolver,
-} = createReadyToUseResolvers(REST_API_ENDPOINT)
+const { queryResolver, mutationResolver, jsonResolver } = createReadyToUseResolvers(REST_API_ENDPOINT)
 
 const resolvers = {
   Query: queryResolver,
@@ -70,9 +66,7 @@ const server = new ApolloServer({
 
 // Start the GraphQL server
 server.listen({ port: APP_PORT }, () =>
-  console.log(
-    `🚀 Server ready at http://localhost:${APP_PORT}${server.graphqlPath}`
-  )
+  console.log(`🚀 Server ready at http://localhost:${APP_PORT}${server.graphqlPath}`)
 )
 ```
 

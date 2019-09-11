@@ -13,15 +13,13 @@ const WEBSOCKET_PORT = 4001
 const REST_API_ENDPOINT = 'https://api.radarrelay.com/0x/v2'
 const WS_API_ENDPOINT = 'wss://ws.radarrelay.com/0x/v2'
 
-const {
-  queryResolver,
-  mutationResolver,
-  subscriptionResolver,
-  jsonResolver,
-} = createReadyToUseResolvers(REST_API_ENDPOINT, {
-  websocketUrl: WS_API_ENDPOINT,
-  autoSubscribe: true,
-})
+const { queryResolver, mutationResolver, subscriptionResolver, jsonResolver } = createReadyToUseResolvers(
+  REST_API_ENDPOINT,
+  {
+    websocketUrl: WS_API_ENDPOINT,
+    autoSubscribe: true,
+  }
+)
 
 const resolvers = {
   Query: queryResolver,
@@ -50,9 +48,7 @@ SubscriptionServer.create(
 
 // Start websocket server
 websocketServer.listen(WEBSOCKET_PORT, () =>
-  console.log(
-    `Websocket server is now running on ws://localhost:${WEBSOCKET_PORT}`
-  )
+  console.log(`Websocket server is now running on ws://localhost:${WEBSOCKET_PORT}`)
 )
 
 const server = new ApolloServer({
@@ -65,10 +61,6 @@ const server = new ApolloServer({
 
 // Start the app server
 server.listen({ port: APP_PORT }, () => {
-  console.log(
-    `🚀 Server ready at http://localhost:${APP_PORT}${server.graphqlPath}`
-  )
-  console.log(
-    `🚀 Subscriptions ready at ws://localhost:${WEBSOCKET_PORT}${server.subscriptionsPath}`
-  )
+  console.log(`🚀 Server ready at http://localhost:${APP_PORT}${server.graphqlPath}`)
+  console.log(`🚀 Subscriptions ready at ws://localhost:${WEBSOCKET_PORT}${server.subscriptionsPath}`)
 })

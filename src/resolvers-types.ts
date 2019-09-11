@@ -1,8 +1,4 @@
-import {
-  GraphQLResolveInfo,
-  GraphQLScalarType,
-  GraphQLScalarTypeConfig,
-} from 'graphql'
+import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql'
 export type Maybe<T> = T | null
 export type RequireFields<T, K extends keyof T> = {
   [X in Exclude<keyof T, K>]?: T[X]
@@ -301,25 +297,9 @@ export type SubscriptionResolveFn<TResult, TParent, TContext, TArgs> = (
   info: GraphQLResolveInfo
 ) => TResult | Promise<TResult>
 
-export interface SubscriptionSubscriberObject<
-  TResult,
-  TKey extends string,
-  TParent,
-  TContext,
-  TArgs
-> {
-  subscribe: SubscriptionSubscribeFn<
-    { [key in TKey]: TResult },
-    TParent,
-    TContext,
-    TArgs
-  >
-  resolve?: SubscriptionResolveFn<
-    TResult,
-    { [key in TKey]: TResult },
-    TContext,
-    TArgs
-  >
+export interface SubscriptionSubscriberObject<TResult, TKey extends string, TParent, TContext, TArgs> {
+  subscribe: SubscriptionSubscribeFn<{ [key in TKey]: TResult }, TParent, TContext, TArgs>
+  resolve?: SubscriptionResolveFn<TResult, { [key in TKey]: TResult }, TContext, TArgs>
 }
 
 export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
@@ -327,26 +307,12 @@ export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
   resolve: SubscriptionResolveFn<TResult, any, TContext, TArgs>
 }
 
-export type SubscriptionObject<
-  TResult,
-  TKey extends string,
-  TParent,
-  TContext,
-  TArgs
-> =
+export type SubscriptionObject<TResult, TKey extends string, TParent, TContext, TArgs> =
   | SubscriptionSubscriberObject<TResult, TKey, TParent, TContext, TArgs>
   | SubscriptionResolverObject<TResult, TParent, TContext, TArgs>
 
-export type SubscriptionResolver<
-  TResult,
-  TKey extends string,
-  TParent = {},
-  TContext = {},
-  TArgs = {}
-> =
-  | ((
-      ...args: any[]
-    ) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
+export type SubscriptionResolver<TResult, TKey extends string, TParent = {}, TContext = {}, TArgs = {}> =
+  | ((...args: any[]) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
   | SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>
 
 export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
@@ -357,12 +323,7 @@ export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
 
 export type NextResolverFn<T> = () => Promise<T>
 
-export type DirectiveResolverFn<
-  TResult = {},
-  TParent = {},
-  TContext = {},
-  TArgs = {}
-> = (
+export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs = {}> = (
   next: NextResolverFn<TResult>,
   parent: TParent,
   args: TArgs,
@@ -378,9 +339,7 @@ export type ResolversTypes = ResolversObject<{
   AssetPairResponse: ResolverTypeWrapper<AssetPairResponse>
   AssetPair: ResolverTypeWrapper<AssetPair>
   AssetData: ResolverTypeWrapper<AssetData>
-  WrapperSignedOrderWithMetadata: ResolverTypeWrapper<
-    WrapperSignedOrderWithMetadata
-  >
+  WrapperSignedOrderWithMetadata: ResolverTypeWrapper<WrapperSignedOrderWithMetadata>
   SignedOrder: ResolverTypeWrapper<SignedOrder>
   JSON: ResolverTypeWrapper<Scalars['JSON']>
   PaginatedAPIOrder: ResolverTypeWrapper<PaginatedApiOrder>
@@ -394,9 +353,7 @@ export type ResolversTypes = ResolversObject<{
   SUBSCRIPTION_SUBSCRIBE_REQUEST_TYPES: Subscription_Subscribe_Request_Types
   SUBSCRIPTION_SUBSCRIBE_REQUEST_CHANNELS: Subscription_Subscribe_Request_Channels
   SubscriptionFilterParameters: SubscriptionFilterParameters
-  SubscriptionOrderUpdateResponse: ResolverTypeWrapper<
-    SubscriptionOrderUpdateResponse
-  >
+  SubscriptionOrderUpdateResponse: ResolverTypeWrapper<SubscriptionOrderUpdateResponse>
   SUBSCRIPTION_ORDER_UPDATE_RESPONSE_TYPE: Subscription_Order_Update_Response_Type
   SUBSCRIPTION_ORDER_UPDATE_RESPONSE_CHANNEL: Subscription_Order_Update_Response_Channel
   CacheControlScope: CacheControlScope
@@ -471,11 +428,7 @@ export type AssetPairResponseResolvers<
   total?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   page?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   perPage?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  records?: Resolver<
-    Array<Maybe<ResolversTypes['AssetPair']>>,
-    ParentType,
-    ContextType
-  >
+  records?: Resolver<Array<Maybe<ResolversTypes['AssetPair']>>, ParentType, ContextType>
 }>
 
 export type FeeRecipientsResponseResolvers<
@@ -485,15 +438,10 @@ export type FeeRecipientsResponseResolvers<
   total?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   page?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   perPage?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  records?: Resolver<
-    Array<Maybe<ResolversTypes['String']>>,
-    ParentType,
-    ContextType
-  >
+  records?: Resolver<Array<Maybe<ResolversTypes['String']>>, ParentType, ContextType>
 }>
 
-export interface JsonScalarConfig
-  extends GraphQLScalarTypeConfig<ResolversTypes['JSON'], any> {
+export interface JsonScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['JSON'], any> {
   name: 'JSON'
 }
 
@@ -515,21 +463,13 @@ export type OrderResolvers<
 > = ResolversObject<{
   makerAddress?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   takerAddress?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  feeRecipientAddress?: Resolver<
-    ResolversTypes['String'],
-    ParentType,
-    ContextType
-  >
+  feeRecipientAddress?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   senderAddress?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   makerAssetAmount?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   takerAssetAmount?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   makerFee?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   takerFee?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  expirationTimeSeconds?: Resolver<
-    ResolversTypes['String'],
-    ParentType,
-    ContextType
-  >
+  expirationTimeSeconds?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   salt?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   makerAssetData?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   takerAssetData?: Resolver<ResolversTypes['String'], ParentType, ContextType>
@@ -541,16 +481,8 @@ export type OrderbookResponseResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['OrderbookResponse'] = ResolversParentTypes['OrderbookResponse']
 > = ResolversObject<{
-  bids?: Resolver<
-    Maybe<ResolversTypes['PaginatedAPIOrder']>,
-    ParentType,
-    ContextType
-  >
-  asks?: Resolver<
-    Maybe<ResolversTypes['PaginatedAPIOrder']>,
-    ParentType,
-    ContextType
-  >
+  bids?: Resolver<Maybe<ResolversTypes['PaginatedAPIOrder']>, ParentType, ContextType>
+  asks?: Resolver<Maybe<ResolversTypes['PaginatedAPIOrder']>, ParentType, ContextType>
 }>
 
 export type OrderConfigResolvers<
@@ -559,11 +491,7 @@ export type OrderConfigResolvers<
 > = ResolversObject<{
   makerFee?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   takerFee?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  feeRecipientAddress?: Resolver<
-    ResolversTypes['String'],
-    ParentType,
-    ContextType
-  >
+  feeRecipientAddress?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   senderAddress?: Resolver<ResolversTypes['String'], ParentType, ContextType>
 }>
 
@@ -574,35 +502,21 @@ export type PaginatedApiOrderResolvers<
   total?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   page?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
   perPage?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
-  records?: Resolver<
-    Array<Maybe<ResolversTypes['WrapperSignedOrderWithMetadata']>>,
-    ParentType,
-    ContextType
-  >
+  records?: Resolver<Array<Maybe<ResolversTypes['WrapperSignedOrderWithMetadata']>>, ParentType, ContextType>
 }>
 
 export type QueryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
 > = ResolversObject<{
-  assetPairs?: Resolver<
-    Maybe<ResolversTypes['AssetPairResponse']>,
-    ParentType,
-    ContextType,
-    QueryAssetPairsArgs
-  >
+  assetPairs?: Resolver<Maybe<ResolversTypes['AssetPairResponse']>, ParentType, ContextType, QueryAssetPairsArgs>
   order?: Resolver<
     Maybe<ResolversTypes['WrapperSignedOrderWithMetadata']>,
     ParentType,
     ContextType,
     RequireFields<QueryOrderArgs, 'id'>
   >
-  orders?: Resolver<
-    Maybe<ResolversTypes['PaginatedAPIOrder']>,
-    ParentType,
-    ContextType,
-    QueryOrdersArgs
-  >
+  orders?: Resolver<Maybe<ResolversTypes['PaginatedAPIOrder']>, ParentType, ContextType, QueryOrdersArgs>
   orderbook?: Resolver<
     Maybe<ResolversTypes['OrderbookResponse']>,
     ParentType,
@@ -639,21 +553,13 @@ export type SignedOrderResolvers<
 > = ResolversObject<{
   makerAddress?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   takerAddress?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  feeRecipientAddress?: Resolver<
-    ResolversTypes['String'],
-    ParentType,
-    ContextType
-  >
+  feeRecipientAddress?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   senderAddress?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   makerAssetAmount?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   takerAssetAmount?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   makerFee?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   takerFee?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  expirationTimeSeconds?: Resolver<
-    ResolversTypes['String'],
-    ParentType,
-    ContextType
-  >
+  expirationTimeSeconds?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   salt?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   makerAssetData?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   takerAssetData?: Resolver<ResolversTypes['String'], ParentType, ContextType>
@@ -670,10 +576,7 @@ export type SubscriptionResolvers<
     'subscribeToOrders',
     ParentType,
     ContextType,
-    RequireFields<
-      SubscriptionSubscribeToOrdersArgs,
-      'type' | 'channel' | 'requestId'
-    >
+    RequireFields<SubscriptionSubscribeToOrdersArgs, 'type' | 'channel' | 'requestId'>
   >
 }>
 
@@ -681,26 +584,13 @@ export type SubscriptionOrderUpdateResponseResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['SubscriptionOrderUpdateResponse'] = ResolversParentTypes['SubscriptionOrderUpdateResponse']
 > = ResolversObject<{
-  type?: Resolver<
-    ResolversTypes['SUBSCRIPTION_ORDER_UPDATE_RESPONSE_TYPE'],
-    ParentType,
-    ContextType
-  >
-  channel?: Resolver<
-    ResolversTypes['SUBSCRIPTION_ORDER_UPDATE_RESPONSE_CHANNEL'],
-    ParentType,
-    ContextType
-  >
+  type?: Resolver<ResolversTypes['SUBSCRIPTION_ORDER_UPDATE_RESPONSE_TYPE'], ParentType, ContextType>
+  channel?: Resolver<ResolversTypes['SUBSCRIPTION_ORDER_UPDATE_RESPONSE_CHANNEL'], ParentType, ContextType>
   requestId?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  payload?: Resolver<
-    Maybe<Array<Maybe<ResolversTypes['WrapperSignedOrderWithMetadata']>>>,
-    ParentType,
-    ContextType
-  >
+  payload?: Resolver<Maybe<Array<Maybe<ResolversTypes['WrapperSignedOrderWithMetadata']>>>, ParentType, ContextType>
 }>
 
-export interface UploadScalarConfig
-  extends GraphQLScalarTypeConfig<ResolversTypes['Upload'], any> {
+export interface UploadScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Upload'], any> {
   name: 'Upload'
 }
 
@@ -716,11 +606,7 @@ export type WrapperSignedOrderWithMetadataResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['WrapperSignedOrderWithMetadata'] = ResolversParentTypes['WrapperSignedOrderWithMetadata']
 > = ResolversObject<{
-  order?: Resolver<
-    Maybe<ResolversTypes['SignedOrder']>,
-    ParentType,
-    ContextType
-  >
+  order?: Resolver<Maybe<ResolversTypes['SignedOrder']>, ParentType, ContextType>
   metaData?: Resolver<Maybe<ResolversTypes['JSON']>, ParentType, ContextType>
 }>
 
@@ -738,14 +624,10 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   Query?: QueryResolvers<ContextType>
   SignedOrder?: SignedOrderResolvers<ContextType>
   Subscription?: SubscriptionResolvers<ContextType>
-  SubscriptionOrderUpdateResponse?: SubscriptionOrderUpdateResponseResolvers<
-    ContextType
-  >
+  SubscriptionOrderUpdateResponse?: SubscriptionOrderUpdateResponseResolvers<ContextType>
   Upload?: GraphQLScalarType
   WrapperOrderWithMetadata?: WrapperOrderWithMetadataResolvers<ContextType>
-  WrapperSignedOrderWithMetadata?: WrapperSignedOrderWithMetadataResolvers<
-    ContextType
-  >
+  WrapperSignedOrderWithMetadata?: WrapperSignedOrderWithMetadataResolvers<ContextType>
 }>
 
 /**
@@ -761,6 +643,4 @@ export type DirectiveResolvers<ContextType = any> = ResolversObject<{
  * @deprecated
  * Use "DirectiveResolvers" root object instead. If you wish to get "IDirectiveResolvers", add "typesPrefix: I" to your config.
  */
-export type IDirectiveResolvers<ContextType = any> = DirectiveResolvers<
-  ContextType
->
+export type IDirectiveResolvers<ContextType = any> = DirectiveResolvers<ContextType>
