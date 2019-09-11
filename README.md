@@ -22,7 +22,7 @@ Check out the [quick start guide](#quick-start-guide) for a sample query and [sa
 ### Installation
 
 ```bash
-yarn add 0xql
+$ yarn add 0xql
 ```
 
 ## Quick Start Guide
@@ -185,7 +185,7 @@ We're going to use the popular GraphQL library `Apollo` which offers smooth inte
 First, set up the code, which includes importing the required code and setting up your first query.
 
 ```
-yarn add apollo-boost @apollo/react-hooks graphql
+$ yarn add apollo-boost @apollo/react-hooks graphql
 ```
 
 ```ts
