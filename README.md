@@ -31,7 +31,7 @@ $ yarn add 0xql
 
 ## Quick Start Guide
 
-This guide will walk through setting up a 0xQL GraphQL server that works with [RadarRelay](https://radarrelay.com/).
+This guide will walk through using `0xQL` to set up a GraphQL server that works with [RadarRelay](https://radarrelay.com/).
 
 Install the dependencies
 
@@ -300,7 +300,7 @@ GraphQL is a query language for APIs that enables declarative data fetching in o
 
 An open protocol for decentralized exchange on the Ethereum blockchain.
 
-### What's `0xQL`
+### What's `0xQL`?
 
 A package that provides primitives and tooling for building GraphQL support into your 0x Relayer.
 
