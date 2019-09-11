@@ -77,7 +77,7 @@ server.listen({ port: APP_PORT }, () =>
 Finally, start the server
 
 ```
-node index.js
+$ node index.js
 ```
 
 If everything worked, you should see the following printed in the console
