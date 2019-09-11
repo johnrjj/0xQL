@@ -4,7 +4,7 @@ Easily add GraphQL support to any 0x Relayer that follows the [0x Standard Relay
 
 ## Demo
 
-Check out the GraphiQL playground here. Try creating some queries, mutations, or subscriptions.
+Check out the GraphiQL playground [here](https://zeroexql.herokuapp.com/graphql). Try creating some queries, mutations, or subscriptions.
 
 Check out the [getting started guide](#getting-started) for a sample query and [sample subscription](#subscriptions-demo) to try out on the demo playground.
 
@@ -120,7 +120,7 @@ If you're looking to add subscriptions, check out the implementation example [he
 
 #### Subscriptions Demo
 
-Check out the [demo site]() for a live demo.
+Check out the [demo playground](https://zeroexql.herokuapp.com/graphql) for a live demo of subscriptions in action.
 
 Here's a sample subscription to send to the GraphQL server:
 
