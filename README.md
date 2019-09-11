@@ -168,13 +168,13 @@ You'll start to get a stream of incoming orders that look like the structure you
 }
 ```
 
-### More examples
+## More Examples
 
 - [Basic](./src/examples/basic/index.ts) (without subscriptions)
 - [Basic](./src/examples/basic-with-subscriptions/index.ts) (with subscriptions)
 - [Advanced](./src/examples/advanced/index.ts) (demos integration with existing express server)
 
-### Client Side Integration
+## Client Side Integration
 
 Here's an example of integrating React and React Hooks with the 0xQL server. This assumes a React app already exists (you can always use `create-react-app` to bootstrap your app).
 
