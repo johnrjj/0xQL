@@ -55,6 +55,6 @@
     "subscriptions-transport-ws": "^0.9.16",
     "uuid": "^3.3.3",
     "web3": "^1.2.1",
-    "ws": "^7.1.2"
+    "ws": "^7.4.6"
   }
 }
