@@ -45,7 +45,7 @@
     "@0x/order-utils": "^8.3.1",
     "@0x/types": "^2.4.2",
     "apollo-link-ws": "^1.0.18",
-    "apollo-server": "^2.9.3",
+    "apollo-server": "^2.25.4",
     "graphql": "^14.5.4",
     "graphql-subscriptions": "^1.1.0",
     "graphql-tools": "^4.0.5",
